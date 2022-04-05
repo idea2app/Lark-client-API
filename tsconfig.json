@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "target": "ES5",
+        "module": "UMD",
+        "moduleResolution": "Node",
+        "declaration": true,
+        "lib": ["ES2021"],
+        "outDir": "dist/"
+    },
+    "include": ["source/index.ts"]
+}
