@@ -4,8 +4,15 @@
         "module": "UMD",
         "moduleResolution": "Node",
         "declaration": true,
-        "lib": ["ES2021"],
+        "lib": ["ES2021", "DOM"],
         "outDir": "dist/"
     },
-    "include": ["source/index.ts"]
+    "include": ["source/index.ts"],
+    "typedocOptions": {
+        "name": "Lark client API",
+        "excludeExternals": true,
+        "excludePrivate": true,
+        "readme": "./ReadMe.md",
+        "out": "docs/"
+    }
 }

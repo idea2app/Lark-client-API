@@ -1,11 +1,17 @@
 {
     "name": "lark-client-api",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "license": "LGPL-3.0",
     "author": "shiy2008@gmail.com",
-    "keywords": [],
-    "description": "",
-    "homepage": "https://github.com/idea2app/Lark-client-API#readme",
+    "description": "Lark client JS API unofficial wrapper based on ECMAScript 6 Promise & TypeScript 4",
+    "keywords": [
+        "lark",
+        "client",
+        "api",
+        "promise",
+        "typescript"
+    ],
+    "homepage": "https://ideapp.dev/Lark-client-API/",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/idea2app/Lark-client-API.git"
@@ -16,10 +22,16 @@
     "source": "source/index.ts",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
+    "dependencies": {
+        "lark-ts-sdk": "^0.7.6"
+    },
     "devDependencies": {
         "husky": "^7.0.4",
         "lint-staged": "^12.3.7",
+        "open-cli": "^7.0.1",
         "prettier": "^2.6.2",
+        "typedoc": "^0.22.14",
+        "typedoc-plugin-mdn-links": "^1.0.5",
         "typescript": "^4.6.3"
     },
     "prettier": {
@@ -34,6 +46,10 @@
     "scripts": {
         "prepare": "husky install",
         "test": "lint-staged",
-        "build": "rm -rf dist/  &&  tsc  &&  rm dist/global.js"
+        "pack-code": "rm -rf dist/  &&  tsc  &&  rm dist/global/*.js",
+        "pack-docs": "rm -rf docs/  &&  typedoc source/",
+        "build": "npm run pack-code  &&  npm run pack-docs",
+        "start": "npm run pack-docs  &&  open-cli docs/index.html",
+        "prepublishOnly": "npm test  &&  npm run build"
     }
 }
