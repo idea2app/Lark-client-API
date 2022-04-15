@@ -2,7 +2,7 @@ import { H5Option, TTOption } from './global';
 
 const H5SDK = globalThis.h5sdk;
 
-const { ready, error, ...H5_rest } = H5SDK;
+const { ready, error, ...H5_rest } = H5SDK || {};
 
 type PromisifyH5<T> = {
     [K in keyof T]: T[K] extends (data: H5Option<infer O>) => any
@@ -29,9 +29,9 @@ export const h5sdk = {
         )
     ) as PromisifyH5<typeof H5SDK>),
 
-    ready: () => new Promise(H5SDK.ready.bind(H5SDK)),
+    ready: ready && (() => new Promise(H5SDK.ready.bind(H5SDK))),
 
-    error: H5SDK.error.bind(H5SDK) as typeof error
+    error: error && (H5SDK.error.bind(H5SDK) as typeof error)
 };
 
 const TT = globalThis.tt;
